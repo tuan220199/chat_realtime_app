@@ -183,7 +183,7 @@
             }
 
             socket.onmessage = async function(e){
-                console.log('message', e)
+                console.log('message', e.data)
             }
 
             socket.onerror = async function(e){
