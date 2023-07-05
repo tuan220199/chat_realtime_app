@@ -13,7 +13,20 @@ class chatConsumer(AsyncConsumer):
         })
 
     async def websocket_receive(self, event):
-        print('receive', event)
+        received_data = json.loads(event["text"])
+        msg = received_data.get("message")
+        
+        if not message:
+            return False
+
+        response = {
+            "message":msg
+        }
+
+        await self.send({
+            "type": "websocket.send",
+            "text": json.dumps(resposne)
+        })
 
     async def websocket_disconnect(self, event):
         print('disconnect', event)
