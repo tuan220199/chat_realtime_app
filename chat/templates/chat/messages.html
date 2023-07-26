@@ -281,7 +281,7 @@ html {
 	<body>
     {% if user.is_authenticated %}
         <h1 style="text-align: end; padding-right: 10px">Logged in as : {{ user.username }}</h1>
-        <input type="hidden" id="logged-in-user" value="{{ user.id }}">
+        <input id="logged-in-user" value="{{ user.id }}">
     {% endif %}
 		<div class="container-fluid h-100">
 			<div class="row justify-content-center h-100 ">
@@ -380,6 +380,8 @@ html {
             let message_body = $("#msg_card_body")
             let send_message_form = $("#send-message-form")
             const USER_ID = $("#logged-in-user").val()
+            
+            console.log(typeof USER_ID)
 
             // Create the http socket
             let loc = window.location
@@ -402,13 +404,13 @@ html {
                     let message = input_message.val();
                     
                     let send_to;
-                    if(USER_ID == 1)
+                    if(USER_ID === "1")
                     {
-                        send_to=2;
+                        send_to="2";
                     }
                     else
                     {
-                        send_to=1;
+                        send_to="1";
                     }
   
                     let data = {
@@ -448,6 +450,8 @@ html {
                 }
                 let message_element;
                 if(sent_by_id == USER_ID){
+                  console.log(USER_ID);
+                  console.log(sent_by_id);
                 message_element = `
                         <div class="d-flex mb-4 replied">
                             <div class="msg_cotainer_send">
@@ -461,6 +465,8 @@ html {
                     `
                 }
                 else{
+                  console.log(USER_ID);
+                  console.log(sent_by_id);
                     message_element = `
                     <div class="d-flex mb-4 received">
                         <div class="img_cont_msg">

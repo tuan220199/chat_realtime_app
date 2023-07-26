@@ -39,13 +39,9 @@ class chatConsumer(AsyncConsumer):
         if not send_to_user:
             print('Error:: send to user is incorrect')
 
-        response = {
-            "message":msg
-        }
-
         other_user_chat_room = f'user_chatroom_{send_to_id}'
         self_user = self.scope['user']
-        reponse = {
+        response = {
             "message": msg,
             "sent_by": self_user.id 
         }
